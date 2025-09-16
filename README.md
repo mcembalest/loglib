@@ -1,2 +1,0 @@
-# loglib
-Logarithmic Learning Library

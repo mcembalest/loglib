@@ -1,0 +1,35 @@
+site_name: Logarithmic Learning Library
+site_description: An online library for learning AI from scratch.
+site_url: https://example.com/
+nav:
+  - Home: index.md
+  - 'Getting Started':
+    - 'Introduction': getting-started.md
+    - 'Introduction to AI': introduction-to-ai.md
+    - 'Foundational Concepts':
+      - 'Mathematics for AI':
+        - 'Linear Algebra': linear-algebra.md
+        - 'Calculus': calculus.md
+        - 'Probability and Statistics': probability-and-statistics.md
+      - 'Programming for AI':
+        - 'Python Basics': python-basics.md
+        - 'Data Structures and Algorithms': data-structures-and-algorithms.md
+        - 'Libraries for AI': libraries-for-ai.md
+    - 'Your First Project':
+      - 'Introduction': your-first-project.md
+      - 'Image Classification': image-classification-project.md
+      - 'Text Generation': text-generation-project.md
+      - 'Predictive Modeling': predictive-modeling-project.md
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
