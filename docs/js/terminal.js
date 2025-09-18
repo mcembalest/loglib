@@ -33,8 +33,8 @@
     function ensureTerminal() {
         // With instant loading, terminal should persist automatically
         // Only create once and reuse the same iframe
-        if (window.__loglibTerminal && window.__loglibTerminal.panel) {
-            return window.__loglibTerminal;
+        if (window.__loglibraryTerminal && window.__loglibraryTerminal.panel) {
+            return window.__loglibraryTerminal;
         }
 
         // Create new terminal only if none exists
@@ -67,7 +67,6 @@
         launcher.className = 'terminal-launcher terminal-no-transition';
         launcher.setAttribute('aria-label', 'Launch terminal');
         launcher.setAttribute('aria-expanded', 'false');
-        launcher.textContent = 'Launch CLI';
 
         const toggle = panel.querySelector('.terminal-toggle');
         launcher.addEventListener('click', () => setVisible(true, panel, launcher, true));
@@ -80,7 +79,7 @@
         };
         window.addEventListener('keydown', keydownHandler);
 
-        window.__loglibTerminal = { 
+        window.__loglibraryTerminal = { 
             panel, 
             launcher, 
             iframe,
@@ -90,7 +89,7 @@
             }
         };
         
-        return window.__loglibTerminal;
+        return window.__loglibraryTerminal;
     }
 
     function attach({ panel, launcher }) {

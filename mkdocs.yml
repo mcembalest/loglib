@@ -1,6 +1,6 @@
 site_name: loglibrary
 site_description: An online library for learning AI from the ground up.
-site_url: https://mcembalest.github.io/loglib
+site_url: https://mcembalest.github.io/loglibrary
 nav:
   - Home:
     - 'Welcome': index.md

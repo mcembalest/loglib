@@ -1,10 +1,10 @@
-# Help loglib
+# Help loglibrary
 
 ## Support the project
 
-Our project is hosted on [github](https://www.github.com/mcembalest/loglib), feel free to contribute!
+Our project is hosted on [github](https://www.github.com/mcembalest/loglibrary), feel free to contribute!
 
-Here are some ways you can help the loglib project:
+Here are some ways you can help the loglibrary project:
 
 ### Contribute knowledge 
 
