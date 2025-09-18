@@ -1,14 +1,8 @@
 // Terminal configuration
 window.terminalConfig = {
-    // Development URL (localhost)
-    url: window.location.hostname === 'localhost' ? 'http://localhost:7681' : 
-         // Production URL (adjust as needed for your deployment)
-         `${window.location.protocol}//${window.location.hostname}:7681`,
-    
-    // Fallback port for different environments
-    port: 7681,
-    
-    // Enable debug logging
+    url: window.location.hostname === 'localhost' ? 'http://localhost:7681' :
+       'wss://terminal.maxcembalest.com',    
+    port: 7681,    
     debug: window.location.hostname === 'localhost'
 };
 
