@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    resize: both;
+    resize: none;
     background: linear-gradient(160deg, #1d1d27 0%, #11111a 70%);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
@@ -154,6 +154,38 @@
 .terminal-toggle:focus:not(:focus-visible),
 .terminal-launcher:focus:not(:focus-visible) {
     outline: none;
+}
+
+/* Corner resize handles */
+.terminal-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    cursor: nw-resize;
+    z-index: 2;
+}
+
+.terminal-resize-handle-tr {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    cursor: ne-resize;
+    z-index: 2;
+}
+
+.terminal-resize-handle-bl {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    cursor: sw-resize;
+    z-index: 2;
 }
 
 /* Error message styling */

@@ -16,27 +16,19 @@ BASH_SILENCE_DEPRECATION_WARNING=1
 
 cd() {
     local target="${1:-$CONTENT_ROOT}"
-    
-    # Sanitize input - remove dangerous characters and sequences
-    target="${target//\.\./}"  # Remove .. sequences
-    target="${target//\;/}"    # Remove semicolons
-    target="${target//\&/}"    # Remove ampersands
-    target="${target//\|/}"    # Remove pipes
-    target="${target//\$/}"    # Remove dollar signs
-    target="${target//\`/}"    # Remove backticks
-    
+
     # Make absolute if relative
     if [[ "$target" != /* ]]; then
         target="$PWD/$target"
     fi
-    
+
     # Resolve path and check if it exists
     local resolved
     resolved="$(builtin cd "$target" 2>/dev/null && pwd)" || {
         echo "cd: ${1:-$target}: No such file or directory"
         return 1
     }
-    
+
     # Ensure path is within allowed content root
     if [[ "$resolved" == "$CONTENT_ROOT"* ]]; then
         builtin cd "$resolved"

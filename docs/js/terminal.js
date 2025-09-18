@@ -52,10 +52,12 @@
         
         panel.innerHTML = `
             <div class="terminal-header">
-                <span class="terminal-title">Terminal</span>
+                <span class="terminal-title">loglibrary terminal</span>
                 <button type="button" class="terminal-toggle" aria-label="Hide terminal">Close</button>
             </div>
             <div class="terminal-body"></div>
+            <div class="terminal-resize-handle-tr"></div>
+            <div class="terminal-resize-handle-bl"></div>
         `;
         
         // Append the iframe to the terminal body
@@ -71,6 +73,9 @@
         const toggle = panel.querySelector('.terminal-toggle');
         launcher.addEventListener('click', () => setVisible(true, panel, launcher, true));
         toggle.addEventListener('click', () => setVisible(false, panel, launcher, true));
+
+        // Add resize functionality
+        addResizeHandlers(panel);
         
         const keydownHandler = event => {
             if (event.key === 'Escape' && !panel.classList.contains('terminal-hidden')) {
@@ -158,6 +163,86 @@
         requestAnimationFrame(() => {
             panel.classList.remove('terminal-no-transition');
             launcher.classList.remove('terminal-no-transition');
+        });
+    }
+
+    function addResizeHandlers(panel) {
+        const handles = [
+            { element: panel, cursor: 'nw-resize', corner: 'top-left' },
+            { element: panel.querySelector('.terminal-resize-handle-tr'), cursor: 'ne-resize', corner: 'top-right' },
+            { element: panel.querySelector('.terminal-resize-handle-bl'), cursor: 'sw-resize', corner: 'bottom-left' }
+        ];
+
+        handles.forEach(({ element, cursor, corner }) => {
+            let isResizing = false;
+            let startX, startY, startWidth, startHeight, startLeft, startTop;
+
+            element.addEventListener('mousedown', (e) => {
+                // Only resize on corner handles, not the main panel
+                if (element === panel && corner === 'top-left') {
+                    // Check if we're actually in the top-left corner (20px x 20px)
+                    const rect = panel.getBoundingClientRect();
+                    if (e.clientX - rect.left > 20 || e.clientY - rect.top > 20) {
+                        return; // Not in the corner, don't resize
+                    }
+                }
+
+                isResizing = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                startWidth = parseInt(window.getComputedStyle(panel).width, 10);
+                startHeight = parseInt(window.getComputedStyle(panel).height, 10);
+                startLeft = parseInt(window.getComputedStyle(panel).right, 10);
+                startTop = parseInt(window.getComputedStyle(panel).bottom, 10);
+
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('mouseup', handleMouseUp);
+                e.preventDefault();
+            });
+
+            const handleMouseMove = (e) => {
+                if (!isResizing) return;
+
+                const deltaX = e.clientX - startX;
+                const deltaY = e.clientY - startY;
+
+                switch (corner) {
+                    case 'top-left':
+                        // Bottom-right stays pinned, extend up and left
+                        const newWidth = startWidth - deltaX;
+                        const newHeight = startHeight - deltaY;
+
+                        if (newWidth >= 320 && newHeight >= 220) {
+                            panel.style.width = newWidth + 'px';
+                            panel.style.height = newHeight + 'px';
+                        }
+                        break;
+
+                    case 'top-right':
+                        // Bottom-right stays pinned, extend up only
+                        const newHeightTR = startHeight - deltaY;
+
+                        if (newHeightTR >= 220) {
+                            panel.style.height = newHeightTR + 'px';
+                        }
+                        break;
+
+                    case 'bottom-left':
+                        // Bottom-right stays pinned, extend left only
+                        const newWidthBL = startWidth - deltaX;
+
+                        if (newWidthBL >= 320) {
+                            panel.style.width = newWidthBL + 'px';
+                        }
+                        break;
+                }
+            };
+
+            const handleMouseUp = () => {
+                isResizing = false;
+                document.removeEventListener('mousemove', handleMouseMove);
+                document.removeEventListener('mouseup', handleMouseUp);
+            };
         });
     }
 })();
