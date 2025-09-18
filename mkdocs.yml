@@ -9,16 +9,23 @@ nav:
     - 'Customer Segmentation': applications/customer-segmentation.md
     - 'Document Analysis': applications/document-analysis.md
     - 'Fraud Detection': applications/fraud-detection.md
+    - 'Manufacturing Inspection': applications/manufacturing-inspection.md
   - Programming:
     - 'Programming': programming/index.md
     - 'APIs': programming/apis.md
     - 'Terminals': programming/terminals.md
     - 'Python': programming/python.md
     - 'JavaScript': programming/javascript.md
+  - Computer Science:
+    - 'Computer Science': computer-science/index.md
+    - 'Automata': computer-science/automata.md
+    - 'Grammars': computer-science/grammars.md
+    - 'Turing Machines': computer-science/turing-machines.md
   - Math:
     - 'Math': math/index.md
-    - 'Linear Algebra': math/linear-algebra.md
     - 'Calculus': math/calculus.md
+    - 'Graph Theory': math/graph-theory.md
+    - 'Linear Algebra': math/linear-algebra.md
     - 'Probability and Statistics': math/probability-and-statistics.md
   - Chronology:
     - 'Chronology': chronology/index.md

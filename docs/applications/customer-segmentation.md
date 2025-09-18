@@ -1,3 +1,5 @@
-# Customer Segmentation (for marketing)
+# Customer Segmentation
 
 Identifying customer segments.
+
+Cluster tabular data, embeddings
