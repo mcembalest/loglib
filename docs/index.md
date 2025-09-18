@@ -1,71 +1,74 @@
-# Welcome to loglib
+# Welcome to loglibrary
 
-The online learning library for AI
+loglibrary is the online AI reference library 
+
+Our goal is to help you find the information you need and let you learn at your own pace.
 
 <div class="grid cards" markdown>
--   :octicons-sparkles-fill-16:{ .lg .middle } [**AI**](ai/index.md)
+
+-   :octicons-sparkles-fill-16:{ .lg .middle } [**AI**](content/ai/index.md)
 
     ---
 
-    Wondering what it's all about?
+    Looking to learn AI concepts?
 
-    [:octicons-arrow-right-24: AI](ai/index.md)
+    [:octicons-arrow-right-24: AI](content/ai/index.md)
 
--   :material-tools:{ .lg .middle } **Applications**
-
-    ---
-
-    Working on something?
-
-    [:octicons-arrow-right-24: Applications](applications/index.md)
-
--   :material-code-tags:{ .lg .middle } **Programming**
+-   :material-tools:{ .lg .middle } [**Applications**](content/applications/index.md)
 
     ---
 
-    Building technical skills?
+    Working on a project?
 
-    [:octicons-arrow-right-24: Programming](programming/index.md)
+    [:octicons-arrow-right-24: Applications](content/applications/index.md)
 
--   :material-data-matrix:{ .lg .middle } **Computer Science**
+-   :material-code-tags:{ .lg .middle } [**Programming**](content/programming/index.md)
+
+    ---
+
+    Developing your technical skills?
+
+    [:octicons-arrow-right-24: Programming](content/programming/index.md)
+
+-   :material-data-matrix:{ .lg .middle } [**Computer Science**](content/cs/index.md)
 
     ---
 
     Seeking stronger foundations?
 
-    [:octicons-arrow-right-24: Computer Science](computer-science/index.md)
+    [:octicons-arrow-right-24: Computer Science](content/cs/index.md)
 
--   :fontawesome-solid-shapes:{ .lg .middle } **Math**
-
-    ---
-
-    Want to understand?
-
-    [:octicons-arrow-right-24: Math](math/index.md)
-
--   :material-timeline-clock:{ .lg .middle } **Chronology**
+-   :fontawesome-solid-shapes:{ .lg .middle } [**Math**](content/math/index.md)
 
     ---
 
-    Curious about history?
+    Want to understand the fundamentals?
 
-    [:octicons-arrow-right-24: Chronology](chronology/index.md)
+    [:octicons-arrow-right-24: Math](content/math/index.md)
 
--   :material-book-open-page-variant:{ .lg .middle } **Glossary**
+-   :material-timeline-clock:{ .lg .middle } [**Chronology**](content/chronology/index.md)
+
+    ---
+
+    Curious about the historical timeline?
+
+    [:octicons-arrow-right-24: Chronology](content/chronology/index.md)
+
+-   :material-book-open-page-variant:{ .lg .middle } [**Glossary**](content/glossary/index.md)
 
     ---
 
     Unclear what something means?
 
-    [:octicons-arrow-right-24: Glossary](glossary/index.md)
+    [:octicons-arrow-right-24: Glossary](content/glossary/index.md)
 
--   :material-library:{ .lg .middle } **Support**
+-   :material-library:{ .lg .middle } [**Help loglibrary**](content/help-loglibrary.md)
 
     ---
 
-    Interested in helping loglib?
+    Interested in supporting loglibrary?
 
-    [:octicons-arrow-right-24: Support](support.md)
+    [:octicons-arrow-right-24: Help loglibrary](content/help-loglibrary.md)
 
 </div>
 

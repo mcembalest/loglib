@@ -1,56 +1,64 @@
-site_name: loglib
+site_name: loglibrary
 site_description: An online library for learning AI from the ground up.
 site_url: https://mcembalest.github.io/loglib
 nav:
   - Home:
     - 'Welcome': index.md
-    - Support: support.md
+    - 'Help loglibrary': content/help-loglibrary.md
   - AI:
-    - 'AI': ai/index.md
-    - 'Agents': ai/agents.md
-    - 'CV': ai/cv.md
-    - 'LLMs': ai/llms.md
-    - 'NLP': ai/nlp.md
-    - 'RL': ai/rl.md
+    - 'Introduction': content/ai/index.md
+    - 'Agents': content/ai/agents.md
+    - 'CV': content/ai/cv.md
+    - 'Embeddings': content/ai/embeddings.md
+    - 'LLMs': content/ai/llms.md
+    - 'NNS': content/ai/nns.md
+    - 'NLP': content/ai/nlp.md
+    - 'RL': content/ai/rl.md
+    - 'Transformers': content/ai/transformers.md
   - Applications:
-    - 'Applications': applications/index.md
-    - 'Customer Segmentation': applications/customer-segmentation.md
-    - 'Document Analysis': applications/document-analysis.md
-    - 'Fraud Detection': applications/fraud-detection.md
-    - 'Manufacturing Inspection': applications/manufacturing-inspection.md
+    - 'Introduction': content/applications/index.md
+    - 'Customer Segmentation': content/applications/customer-segmentation.md
+    - 'Document Analysis': content/applications/document-analysis.md
+    - 'Fraud Detection': content/applications/fraud-detection.md
+    - 'Manufacturing Inspection': content/applications/manufacturing-inspection.md
   - Programming:
-    - 'Programming': programming/index.md
-    - 'APIs': programming/apis.md
-    - 'Terminals': programming/terminals.md
-    - 'Python': programming/python.md
-    - 'JavaScript': programming/javascript.md
+    - 'Introduction': content/programming/index.md
+    - 'APIs': content/programming/apis.md
+    - 'JavaScript': content/programming/javascript.md
+    - 'Python': content/programming/python.md
+    - 'Terminals': content/programming/terminals.md
+    - 'Web Browsers': content/programming/web-browsers.md
   - Computer Science:
-    - 'Computer Science': computer-science/index.md
-    - 'State Machines': computer-science/state-machines.md
-    - 'Grammars': computer-science/grammars.md
-    - 'Turing Machines': computer-science/turing-machines.md
+    - 'Introduction': content/cs/index.md
+    - 'Computational Complexity': content/cs/computational-complexity.md
+    - 'Formal Grammar': content/cs/formal-grammar.md
+    - 'Information Theory': content/cs/information-theory.md
+    - 'State Machines': content/cs/state-machines.md
+    - 'Turing Machines': content/cs/turing-machines.md
   - Math:
-    - 'Math': math/index.md
-    - 'Calculus': math/calculus.md
-    - 'Graph Theory': math/graph-theory.md
-    - 'Linear Algebra': math/linear-algebra.md
-    - 'Probability and Statistics': math/probability-and-statistics.md
+    - 'Introduction': content/math/index.md
+    - 'Calculus': content/math/calculus.md
+    - 'Graph Theory': content/math/graph-theory.md
+    - 'Linear Algebra': content/math/linear-algebra.md
+    - 'Probability and Statistics': content/math/probability-and-statistics.md
   - Chronology:
-    - 'Chronology': chronology/index.md
-    - '1600s': chronology/1600s.md
-    - '1700s': chronology/1700s.md
-    - '1800s': chronology/1800s.md
-    - '1900s': chronology/1900s.md
-    - '2000-2010': chronology/2000-2010.md
-    - '2010-2020': chronology/2010-2020.md
-    - '2020-Present': chronology/2020-present.md
+    - 'Introduction': content/chronology/index.md
+    - 'Past - 1600s': content/chronology/past-1600s.md
+    - '1600s': content/chronology/1600s.md
+    - '1700s': content/chronology/1700s.md
+    - '1800s': content/chronology/1800s.md
+    - '1900s': content/chronology/1900s.md
+    - '2000 - 2009': content/chronology/2000-2009.md
+    - '2010 - 2019': content/chronology/2010-2019.md
+    - '2020 - Present': content/chronology/2020-present.md
   - Glossary:
-    - 'Glossary': glossary/index.md
+    - 'Glossary': content/glossary/index.md
 theme:
   name: material
   logo: assets/logo.png
   favicon: assets/logo.png
   features:
+    - navigation.instant
     - navigation.tabs
     - search.suggest
     - search.highlight
@@ -66,3 +74,10 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+extra_javascript:
+  - js/terminal-config.js
+  - js/terminal.js
+
+extra_css:
+  - styles/terminal.css
