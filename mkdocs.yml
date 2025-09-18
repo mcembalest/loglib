@@ -3,25 +3,25 @@ site_description: An online library for learning AI from the ground up.
 site_url: https://mcembalest.github.io/loglib
 nav:
   - Home:
-    - 'Welcome to loglib': index.md
+    - 'Welcome': index.md
   - Applications:
-    - 'AI Applications': applications/index.md
-    - 'Customer Segmentation (for marketing)': applications/customer-segmentation.md
-    - 'Document Analysis (for lawyers)': applications/document-analysis.md
-    - 'Fraud Detection (for banks)': applications/fraud-detection.md
-  - 'Programming':
-    - 'AI Programming': programming/index.md
+    - 'Applications': applications/index.md
+    - 'Customer Segmentation': applications/customer-segmentation.md
+    - 'Document Analysis': applications/document-analysis.md
+    - 'Fraud Detection': applications/fraud-detection.md
+  - Programming:
+    - 'Programming': programming/index.md
     - 'APIs': programming/apis.md
     - 'Terminals': programming/terminals.md
     - 'Python': programming/python.md
     - 'JavaScript': programming/javascript.md
-  - Mathematics and Computer Science:
-    - 'AI Math and Computer Science': math-and-cs/index.md
-    - 'Linear Algebra': math-and-cs/linear-algebra.md
-    - 'Calculus': math-and-cs/calculus.md
-    - 'Probability and Statistics': math-and-cs/probability-and-statistics.md
+  - Math:
+    - 'Math': math/index.md
+    - 'Linear Algebra': math/linear-algebra.md
+    - 'Calculus': math/calculus.md
+    - 'Probability and Statistics': math/probability-and-statistics.md
   - Chronology:
-    - 'AI Chronology': chronology/index.md
+    - 'Chronology': chronology/index.md
     - '1600s': chronology/1600s.md
     - '1700s': chronology/1700s.md
     - '1800s': chronology/1800s.md
@@ -30,11 +30,11 @@ nav:
     - '2010-2020': chronology/2010-2020.md
     - '2020-Present': chronology/2020-present.md
   - Glossary:
-    - 'AI Glossary': glossary/index.md
-    - 'A-Z Terms': glossary/az-terms.md
+    - 'Glossary': glossary/index.md
 theme:
   name: material
   logo: assets/logo.png
+  favicon: assets/logo.png
   features:
     - navigation.tabs
     - search.suggest

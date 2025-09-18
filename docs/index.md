@@ -1,4 +1,4 @@
-# Welcome to loglib
+# Welcome
 
 loglib is an open-source reference library for learning AI from the ground up.
 

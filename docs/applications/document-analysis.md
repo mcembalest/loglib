@@ -1,3 +1,3 @@
 # Document Analysis (for lawyers)
 
-AI methods for processing and analyzing legal documents.
+Processing and analyzing documents.
