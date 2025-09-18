@@ -44,6 +44,7 @@ services:
       - ./repo/docs/content:/docs/content:ro
       - ./restricted_shell.sh:/restricted_shell.sh:ro
     command: [
+      "ttyd",
       "--port", "7681",
       "--writable",
       "--max-clients", "50",
