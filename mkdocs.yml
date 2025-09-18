@@ -4,6 +4,14 @@ site_url: https://mcembalest.github.io/loglib
 nav:
   - Home:
     - 'Welcome': index.md
+    - Support: support.md
+  - AI:
+    - 'AI': ai/index.md
+    - 'Agents': ai/agents.md
+    - 'CV': ai/cv.md
+    - 'LLMs': ai/llms.md
+    - 'NLP': ai/nlp.md
+    - 'RL': ai/rl.md
   - Applications:
     - 'Applications': applications/index.md
     - 'Customer Segmentation': applications/customer-segmentation.md
@@ -18,7 +26,7 @@ nav:
     - 'JavaScript': programming/javascript.md
   - Computer Science:
     - 'Computer Science': computer-science/index.md
-    - 'Automata': computer-science/automata.md
+    - 'State Machines': computer-science/state-machines.md
     - 'Grammars': computer-science/grammars.md
     - 'Turing Machines': computer-science/turing-machines.md
   - Math:
@@ -48,6 +56,11 @@ theme:
     - search.highlight
     - content.code.copy
 markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
