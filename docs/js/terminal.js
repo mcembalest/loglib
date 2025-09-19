@@ -1,10 +1,13 @@
 (() => {
     const storageKey = 'terminal-visible';
     
-    // Get terminal URL from config or default
+    // Get terminal URL from config - config is the single source of truth
     const getTerminalUrl = () => {
-        const config = window.terminalConfig || {};
-        return config.url || (window.location.hostname === 'localhost' ? 'http://localhost:7681' : `${window.location.protocol}//${window.location.hostname}:7681`);
+        if (!window.terminalConfig || !window.terminalConfig.url) {
+            console.error('[Terminal] terminalConfig.url not found. Make sure terminal-config.js is loaded first.');
+            return 'http://localhost:7681'; // fallback for development
+        }
+        return window.terminalConfig.url;
     };
 
     const mount = () => {
@@ -45,10 +48,16 @@
         
         // Create iframe only once and reuse it
         const iframe = document.createElement('iframe');
-        iframe.src = getTerminalUrl();
+        const terminalUrl = getTerminalUrl();
+        iframe.src = terminalUrl;
         iframe.className = 'terminal-iframe';
         iframe.title = 'Embedded terminal';
         iframe.addEventListener('error', () => handleIframeError(iframe));
+        
+        // Debug logging
+        if (window.terminalConfig && window.terminalConfig.log) {
+            window.terminalConfig.log(`Creating terminal iframe with URL: ${terminalUrl}`);
+        }
         
         panel.innerHTML = `
             <div class="terminal-header">
