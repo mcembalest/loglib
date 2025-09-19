@@ -1,8 +1,6 @@
 # Python
 
-Python scripts, 
-
-Useful libraries for
+Common language for quick scripts and full applications
 
 ## Making Visualizations 
 

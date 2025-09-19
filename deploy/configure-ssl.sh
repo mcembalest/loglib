@@ -1,17 +1,13 @@
 #!/bin/bash
 
-# SSL Configuration Script
-# Usage: ./configure-ssl.sh yourdomain.com
-
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <domain>"
-    echo "Example: $0 terminal.loglibrary.com"
     exit 1
 fi
 
 DOMAIN=$1
 
-echo "🔒 Configuring SSL for $DOMAIN..."
+echo "Configuring SSL for $DOMAIN"
 
 # Update nginx config with actual domain
 sed -i "s/DOMAIN_PLACEHOLDER/$DOMAIN/g" /etc/nginx/sites-available/loglibrary-terminal
@@ -32,7 +28,8 @@ fi
 systemctl restart nginx
 
 # Get SSL certificate
-certbot --nginx -d $DOMAIN --non-interactive --agree-tos --email admin@$DOMAIN
+read -p "Enter email for SSL certificate: " EMAIL
+certbot --nginx -d $DOMAIN --non-interactive --agree-tos --email "$EMAIL"
 
 if [ $? -eq 0 ]; then
     echo "✅ SSL configured successfully!"

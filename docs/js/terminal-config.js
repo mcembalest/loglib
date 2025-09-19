@@ -1,5 +1,7 @@
 window.terminalConfig = {
-    url: 'wss://terminal.maxcembalest.com',
+    url: window.location.hostname === 'localhost'
+        ? 'http://localhost:7681'
+        : 'https://terminal.maxcembalest.com',
     port: 7681,
     debug: window.location.hostname === 'localhost'
 };

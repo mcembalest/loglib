@@ -1,3 +1,3 @@
 # APIs
 
-Working with AI APIs.
+Making basic API calls to access services and AI models

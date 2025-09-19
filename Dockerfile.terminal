@@ -1,0 +1,33 @@
+FROM ubuntu:22.04
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    git \
+    vim \
+    nano \
+    python3 \
+    python3-pip \
+    nodejs \
+    npm \
+    jq \
+    tree \
+    htop \
+    unzip \
+    zip \
+    sudo \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN useradd -m -s /bin/bash termuser && \
+    echo "termuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+WORKDIR /workspace
+RUN chown termuser:termuser /workspace
+COPY docs/content /docs/content
+RUN chown -R termuser:termuser /docs/content
+COPY restricted_shell.sh /restricted_shell.sh
+RUN chmod +x /restricted_shell.sh
+USER termuser
+ENV TERM=xterm-256color
+ENV CONTENT_ROOT=/docs/content
+CMD ["/restricted_shell.sh"]

@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🚀 Setting up loglibrary terminal server..."
+echo "Setting up loglibrary terminal"
 
 # Update system
 apt update && apt upgrade -y
@@ -29,35 +29,54 @@ cd /opt/loglibrary-terminal
 # Clone your repository for docs
 git clone https://github.com/mcembalest/loglibrary.git repo
 
-# Create docker-compose.yml
+# Build custom terminal image
+docker build -t loglibrary-terminal ./repo -f ./repo/Dockerfile.terminal
+
+# Create docker-compose.yml for ephemeral containers
 cat > docker-compose.yml << 'EOF'
 version: '3.8'
 
 services:
-  terminal:
+  terminal-manager:
     image: tsl0922/ttyd:latest
-    container_name: loglibrary-terminal
+    container_name: loglibrary-terminal-manager
     restart: unless-stopped
     ports:
       - "7681:7681"
     volumes:
-      - ./repo/docs/content:/docs/content:ro
-      - ./restricted_shell.sh:/restricted_shell.sh:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./spawn_terminal.sh:/spawn_terminal.sh:ro
     command: [
       "ttyd",
       "--port", "7681",
-      "--writable",
-      "--max-clients", "50",
-      "/restricted_shell.sh"
+      "--readonly",
+      "--max-clients", "20",
+      "/spawn_terminal.sh"
     ]
     environment:
       - TERM=xterm-256color
 EOF
 
-# Copy and modify the restricted shell script
-cp repo/restricted_shell.sh .
-sed -i 's|SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"|SCRIPT_DIR="/"|g' restricted_shell.sh
-sed -i 's|export CONTENT_ROOT="$SCRIPT_DIR/docs/content"|export CONTENT_ROOT="/docs/content"|g' restricted_shell.sh
+# Create terminal spawner script
+cat > spawn_terminal.sh << 'EOF'
+#!/bin/bash
+CONTAINER_ID=$(docker run -d --rm \
+  --name "terminal-$(date +%s)-$(shuf -i 1000-9999 -n 1)" \
+  --memory="512m" \
+  --cpus="0.5" \
+  --cap-drop=ALL \
+  --security-opt=no-new-privileges \
+  loglibrary-terminal)
+
+echo "Starting session"
+docker exec -it "$CONTAINER_ID" /restricted_shell.sh
+
+# Cleanup on exit
+docker stop "$CONTAINER_ID" 2>/dev/null || true
+EOF
+
+# Make spawn script executable
+chmod +x spawn_terminal.sh
 
 # Create nginx configuration
 cat > /etc/nginx/sites-available/loglibrary-terminal << 'EOF'
@@ -120,7 +139,7 @@ systemctl start loglibrary-docs-update.timer
 # Start the terminal server
 docker-compose up -d
 
-echo "✅ Terminal server setup complete!"
+echo "Terminal server setup complete"
 echo ""
 echo "Next steps:"
 echo "1. Point your domain to this server's IP"
