@@ -29,54 +29,37 @@ cd /opt/loglibrary-terminal
 # Clone your repository for docs
 git clone https://github.com/mcembalest/loglibrary.git repo
 
-# Build custom terminal image
+# Build custom terminal image that matches local setup exactly
 docker build -t loglibrary-terminal ./repo -f ./repo/Dockerfile.terminal
 
-# Create docker-compose.yml for ephemeral containers
+# Create docker-compose.yml that replicates local terminal behavior
 cat > docker-compose.yml << 'EOF'
 version: '3.8'
 
 services:
-  terminal-manager:
-    image: tsl0922/ttyd:latest
-    container_name: loglibrary-terminal-manager
+  terminal:
+    image: loglibrary-terminal
+    container_name: loglibrary-terminal
     restart: unless-stopped
     ports:
       - "7681:7681"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./spawn_terminal.sh:/spawn_terminal.sh:ro
     command: [
       "ttyd",
       "--port", "7681",
-      "--readonly",
       "--max-clients", "20",
-      "/spawn_terminal.sh"
+      "--writable",
+      "/restricted_shell.sh"
     ]
     environment:
       - TERM=xterm-256color
+      - CONTENT_ROOT=/docs/content
+    volumes:
+      - terminal_workspace:/workspace
+    working_dir: /workspace
+
+volumes:
+  terminal_workspace:
 EOF
-
-# Create terminal spawner script
-cat > spawn_terminal.sh << 'EOF'
-#!/bin/bash
-CONTAINER_ID=$(docker run -d --rm \
-  --name "terminal-$(date +%s)-$(shuf -i 1000-9999 -n 1)" \
-  --memory="512m" \
-  --cpus="0.5" \
-  --cap-drop=ALL \
-  --security-opt=no-new-privileges \
-  loglibrary-terminal)
-
-echo "Starting session"
-docker exec -it "$CONTAINER_ID" /restricted_shell.sh
-
-# Cleanup on exit
-docker stop "$CONTAINER_ID" 2>/dev/null || true
-EOF
-
-# Make spawn script executable
-chmod +x spawn_terminal.sh
 
 # Create nginx configuration
 cat > /etc/nginx/sites-available/loglibrary-terminal << 'EOF'
@@ -103,6 +86,9 @@ cat > update-docs.sh << 'EOF'
 #!/bin/bash
 cd /opt/loglibrary-terminal/repo
 git pull origin main
+# Rebuild the terminal image with updated content
+docker build -t loglibrary-terminal . -f ./Dockerfile.terminal
+# Restart the terminal service
 docker-compose restart terminal
 EOF
 

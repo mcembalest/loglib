@@ -19,6 +19,11 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
+# Install ttyd to match local setup exactly
+RUN curl -LO https://github.com/tsl0922/ttyd/releases/download/1.7.3/ttyd.x86_64 && \
+    chmod +x ttyd.x86_64 && \
+    mv ttyd.x86_64 /usr/local/bin/ttyd
+
 RUN useradd -m -s /bin/bash termuser && \
     echo "termuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 WORKDIR /workspace

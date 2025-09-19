@@ -36,7 +36,7 @@ if [ $? -eq 0 ]; then
     echo "Your terminal server is now available at: https://$DOMAIN"
     echo ""
     echo "Update your terminal-config.js with:"
-    echo "url: 'wss://$DOMAIN'"
+    echo "url: 'https://$DOMAIN'"
 else
     echo "❌ SSL setup failed. Check domain DNS and try again."
     exit 1
